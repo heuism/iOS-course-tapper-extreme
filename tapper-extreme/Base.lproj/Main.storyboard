@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retrobg" translatesAutoresizingMaskIntoConstraints="NO" id="TYT-Sn-aGw">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Tapper" translatesAutoresizingMaskIntoConstraints="NO" id="awh-Tu-Yzi" userLabel="Logo">
                                 <rect key="frame" x="116" y="101" width="368" height="79"/>
                                 <constraints>
@@ -24,14 +27,6 @@
                                     <constraint firstAttribute="height" constant="79" id="y5x-2o-ch4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvs-Z6-NSx" userLabel="PlayBtn">
-                                <rect key="frame" x="176" y="421" width="249" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="x8o-Bv-NAs"/>
-                                    <constraint firstAttribute="width" constant="249" id="xfu-f4-YvF"/>
-                                </constraints>
-                                <state key="normal" image="playbtn"/>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How many taps to win?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5E7-t7-F5d" userLabel="TapTxt">
                                 <rect key="frame" x="176" y="371" width="249" height="30"/>
                                 <constraints>
@@ -41,13 +36,16 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-Ep-IxB" userLabel="CoinBtn">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-Ep-IxB" userLabel="TapBtn">
                                 <rect key="frame" x="220" y="58" width="160" height="165"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="165" id="5wi-UB-5O2"/>
                                     <constraint firstAttribute="width" constant="160" id="rnA-Gl-KDe"/>
                                 </constraints>
                                 <state key="normal" image="coin"/>
+                                <connections>
+                                    <action selector="onCoinTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AAC-Hq-bFA"/>
+                                </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 taps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxF-6Q-HB1" userLabel="TapLbl">
                                 <rect key="frame" x="156" y="251" width="289" height="76"/>
@@ -59,9 +57,17 @@
                                 <color key="textColor" red="0.99897742146596857" green="0.99897742146596857" blue="0.99897742146596857" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retrobg" translatesAutoresizingMaskIntoConstraints="NO" id="TYT-Sn-aGw">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvs-Z6-NSx" userLabel="PlayBtn">
+                                <rect key="frame" x="176" y="421" width="249" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="x8o-Bv-NAs"/>
+                                    <constraint firstAttribute="width" constant="249" id="xfu-f4-YvF"/>
+                                </constraints>
+                                <state key="normal" image="playbtn"/>
+                                <connections>
+                                    <action selector="onPlayBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCc-Lu-l9m"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -81,6 +87,13 @@
                             <constraint firstItem="hxF-6Q-HB1" firstAttribute="top" secondItem="6mC-Ep-IxB" secondAttribute="bottom" constant="28" id="tR8-tx-waU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="howManyTapsTxt" destination="5E7-t7-F5d" id="P0q-ei-Ukz"/>
+                        <outlet property="logoImg" destination="awh-Tu-Yzi" id="trF-zB-I8H"/>
+                        <outlet property="playBtn" destination="Fvs-Z6-NSx" id="NIk-CE-lvi"/>
+                        <outlet property="tapBtn" destination="6mC-Ep-IxB" id="dEQ-Ai-g3F"/>
+                        <outlet property="tapLbl" destination="hxF-6Q-HB1" id="GeG-Fh-JRz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
